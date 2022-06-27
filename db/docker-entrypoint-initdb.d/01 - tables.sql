@@ -1,0 +1,7 @@
+CREATE TABLE `articles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `uuid` VARCHAR(36) NOT NULL,
+  `title` VARCHAR(128) NOT NULL,
+  `article` TEXT NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARSET=latin1;

@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: example
+    healthcheck:
+      test: ["CMD", "mysql", "-proot"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+      start_period: 5s
+    volumes:
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+
+  remote:
+    build:
+      context: ./remote
+      dockerfile: ./Dockerfile
+    depends_on: 
+      db:
+        condition: service_healthy
+    volumes:
+      - ./remote:/home/someuser
+
+  local:
+    build:
+      context: ./local
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./local:/home/someuser
