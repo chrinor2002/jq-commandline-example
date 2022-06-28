@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Given the compose file that has been prepated
+# Given the compose file that has been prepared
 # When we start all the services
 echo "Starting compose services..."
 docker compose up -d
