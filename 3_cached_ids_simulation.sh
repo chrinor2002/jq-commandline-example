@@ -32,7 +32,7 @@ mkdir ./tmp
 for i in {0..9}
 do
   f="./tmp/cache_response_${i}.json"
-  # shuffle the 1000 rows, and take the first 10, and format using jq into a file
+  # shuffle the 1000 rows, and take the first 100, and format using jq into a file
   echo "$JSON_ROWS" | shuf | head -n 100 | docker run -i stedolan/jq -s '' > $f
 done
 # Then the result is a simulation of some kind of fetch returning 10 files containing json chunks (paginated results)
